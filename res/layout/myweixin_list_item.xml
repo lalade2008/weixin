@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#ffffff">
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+	    android:background="#ffffff"
+	    android:orientation="horizontal" 
+	    android:padding="7dp" > 
+        <ImageView
+            android:id="@+id/item_icon"
+	        android:layout_width="48dp"
+	        android:layout_height="48dp"
+	        android:layout_marginLeft="5dp" >            
+        </ImageView>
+        <LinearLayout 
+            android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical" 
+	        android:layout_marginLeft="7dp" >  
+            <RelativeLayout 
+	            android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1" >
+		        <TextView
+	                android:id="@+id/item_name"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:textColor="#353535"
+	                android:textSize="16sp" />  
+	            <TextView
+		            android:id="@+id/item_time"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_alignParentRight="true"
+		            android:textColor="#bbbbbb"
+		            android:textSize="12sp" />  		        
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/item_msg"
+                android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+		        android:layout_marginTop="2dp"
+		        android:ellipsize="end"
+		        android:maxLines="1"
+		        android:textColor="#aaaaaa"
+		        android:textSize="14sp"
+		        android:text="笑嘻嘻惺惺惜惺惺" />	               
+        </LinearLayout>            
+    </LinearLayout>   
+    <View 
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:background="#d6d6d6"/> 
+
+</LinearLayout>

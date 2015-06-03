@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/common_title" />
+        <!-- 顶部BAR -->
+    
+    <android.support.v4.view.ViewPager
+        android:id="@+id/ViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+    	<!-- 中间fragment -->
+    <View 
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:background="#d6d6d6"/>	
+    <LinearLayout 
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#fcfcfc"
+        android:orientation="horizontal" >
+        <!-- 底部BAR -->
+        <TextView
+            android:id="@+id/tab_weixin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="2dp"
+            android:drawableTop="@drawable/wx_onicon"
+            android:gravity="center_horizontal"
+            android:text="微信"
+            android:textColor="#45c01a"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/tab_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="2dp"
+            android:drawableTop="@drawable/contact_icon"
+            android:gravity="center_horizontal"
+            android:text="通讯录"
+            android:textColor="#999999"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/tab_find"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="2dp"
+            android:drawableTop="@drawable/find_icon"
+            android:gravity="center_horizontal"
+            android:text="发现"
+            android:textColor="#999999"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/tab_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="2dp"
+            android:drawableTop="@drawable/me_icon"
+            android:gravity="center_horizontal"
+            android:text="我"
+            android:textColor="#999999"
+            android:textSize="12sp" />        
+    </LinearLayout>
+</LinearLayout>

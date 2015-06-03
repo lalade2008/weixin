@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#ebebeb">
+    <LinearLayout 
+    	android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:layout_marginTop="20dp" >       
+        <TextView
+	    	android:id="@+id/find_more_friend"
+	        android:layout_width="match_parent"
+	        android:layout_height="45dp"
+	        android:layout_marginLeft="20dp"
+	        android:drawablePadding="20dp"
+	        android:drawableLeft="@drawable/find_more_friend_icon"
+	        android:gravity="center_vertical"
+	        android:text="朋友圈"
+	        android:textColor="#373737"
+	        android:textSize="15sp" />   
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical" > 
+        <TextView
+	        android:id="@+id/find_more_friend_scan"
+	        android:layout_width="match_parent"
+	        android:layout_height="45dp"
+	        android:layout_marginLeft="20dp"
+	        android:drawablePadding="20dp"
+	        android:drawableLeft="@drawable/find_more_friend_scan"
+	        android:gravity="center_vertical"
+	        android:text="扫一扫"
+	        android:textColor="#373737"
+	        android:textSize="15sp" />
+        <View 
+		    android:id="@+id/line1"
+		    android:layout_width="match_parent"
+		    android:layout_height="0.1dp"
+		    android:layout_marginLeft="5dp"
+		    android:layout_marginRight="5dp"
+		    android:background="#d6d6d6"/>
+        <TextView
+	        android:id="@+id/find_more_friend_shake"
+	        android:layout_width="match_parent"
+	        android:layout_height="45dp"
+	        android:layout_marginLeft="20dp"
+	        android:drawablePadding="20dp"
+	        android:drawableLeft="@drawable/find_more_friend_shake"
+	        android:gravity="center_vertical"
+	        android:text="摇一摇"
+	        android:textColor="#373737"
+	        android:textSize="15sp" />           
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical" > 
+        <TextView
+	        android:id="@+id/find_more_friend_near"
+	        android:layout_width="match_parent"
+	        android:layout_height="45dp"
+	        android:layout_marginLeft="20dp"
+	        android:drawablePadding="20dp"
+	        android:drawableLeft="@drawable/near"
+	        android:gravity="center_vertical"
+	        android:text="附件的人"
+	        android:textColor="#373737"
+	        android:textSize="15sp" />
+        <View 
+		    android:id="@+id/line2"
+		    android:layout_width="match_parent"
+		    android:layout_height="0.1dp"
+		    android:layout_marginLeft="5dp"
+		    android:layout_marginRight="5dp"
+		    android:background="#d6d6d6"/>
+       	<TextView
+            android:id="@+id/find_more_friend_piaoliu"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="20dp"
+            android:drawablePadding="20dp"
+            android:drawableLeft="@drawable/piaoliu"
+            android:gravity="center_vertical"
+            android:text="漂流瓶"
+            android:textColor="#373737"
+            android:textSize="15sp" />           
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:layout_marginTop="20dp" > 
+        <TextView
+	        android:id="@+id/game"
+	        android:layout_width="match_parent"
+	        android:layout_height="45dp"
+	        android:layout_marginLeft="20dp"
+	        android:drawablePadding="20dp"
+	        android:drawableLeft="@drawable/game"
+	        android:gravity="center_vertical"
+	        android:text="游戏"
+	        android:textColor="#373737"
+	        android:textSize="15sp" /> 
+    </LinearLayout>  
+</LinearLayout>

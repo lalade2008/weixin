@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="tabtext_on">#45c01a</color>
+    <color name="tabtext_off">#999999</color>
+    <color name="listitem_pressed">#d9d9d9</color>
+    <color name="listitem_unpressed">#ffffff</color>
+    
+</resources>
