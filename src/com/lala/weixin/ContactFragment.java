@@ -41,9 +41,9 @@ public class ContactFragment extends Fragment{
 	}	
 	
 	String headTxt[]={"A","B","C","D","E","F","G","H","I","J"};
-	String itemTxt1[]={"çˆ±å","Aåº”åŸ","çˆ±å°”çœ¼ç§‘"};
-	String itemTxt2[]={"æ‰æ‰"};
-	String itemTxt3[]={"é™ˆçˆ¸","é•¿å®‰äºæ»´"};
+	String itemTxt1[]={"°®»ª","AÓ¦³Ç","°®¶ûÑÛ¿Æ"};
+	String itemTxt2[]={"±â±â"};
+	String itemTxt3[]={"³Â°Ö","³¤°²ÓÚµÎ"};
 	Integer itempic1[]={R.drawable.contact_item_pic1,R.drawable.contact_item_pic1,R.drawable.contact_item_pic1};
 	Integer itempic2[]={R.drawable.contact_item_pic1};
 	Integer itempic3[]={R.drawable.contact_item_pic1,R.drawable.contact_item_pic1};

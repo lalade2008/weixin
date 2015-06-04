@@ -2,17 +2,24 @@ package com.lala.weixin.adapter;
 
 import java.util.List;
 
+import com.lala.weixin.R;
+
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class ContactListAdapter extends BaseExpandableListAdapter {
 	LayoutInflater mInflater;
 	private List<String> head_list;
 	private List<List<String>> item_list_txt;
 	private List<List<Integer>> item_list_pic;
+	private ImageView itemImg;
+	private TextView itemTxt;
 
 
 
@@ -22,34 +29,48 @@ public class ContactListAdapter extends BaseExpandableListAdapter {
 	}
 
 	@Override
-	public Object getChild(int arg0, int arg1) {
+	public Object getChild(int groupPosition, int childPosition) {
 		// TODO Auto-generated method stub
-		return null;
+		return item_list_txt.get(groupPosition).get(childPosition);
 	}
 
 	@Override
-	public long getChildId(int arg0, int arg1) {
+	public long getChildId(int groupPosition, int childPosition) {
 		// TODO Auto-generated method stub
-		return 0;
+		return childPosition;
 	}
 
 	@Override
-	public View getChildView(int arg0, int arg1, boolean arg2, View arg3,
-			ViewGroup arg4) {
+	public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView,
+			ViewGroup parent) {
 		// TODO Auto-generated method stub
-		return null;
+		ItemHolder itemHolder;
+		if(convertView==null){
+			convertView=mInflater.inflate(R.layout.contact_itemlist, null);
+			itemHolder=new ItemHolder();
+			itemHolder.itemImg=(ImageView) convertView.findViewById(R.id.contact_item_pic);
+			itemHolder.itemTxt=(TextView) convertView.findViewById(R.id.contact_item_txt);
+			convertView.setTag(itemHolder);
+		}else{
+			itemHolder=(ItemHolder) convertView.getTag();
+		}
+		itemHolder.itemImg.setBackgroundResource(item_list_pic.get(groupPosition).get(childPosition));
+		itemHolder.itemTxt.setText(item_list_txt.get(groupPosition).get(childPosition));
+
+		return convertView;
 	}
 
 	@Override
-	public int getChildrenCount(int arg0) {
+	public int getChildrenCount(int groupPosition ) {
 		// TODO Auto-generated method stub
-		return 0;
+		Log.d("test-----", "groupPosition="+groupPosition+"   size="+item_list_txt.get(groupPosition).size());
+		return item_list_txt.get(groupPosition).size();
 	}
 
 	@Override
-	public Object getGroup(int arg0) {
+	public Object getGroup(int groupPosition) {
 		// TODO Auto-generated method stub
-		return null;
+		return head_list.get(groupPosition);
 	}
 
 	@Override
@@ -59,27 +80,38 @@ public class ContactListAdapter extends BaseExpandableListAdapter {
 	}
 
 	@Override
-	public long getGroupId(int arg0) {
+	public long getGroupId(int groupPosition) {
 		// TODO Auto-generated method stub
-		return 0;
+		return groupPosition;
 	}
 
 	@Override
-	public View getGroupView(int arg0, boolean arg1, View arg2, ViewGroup arg3) {
+	public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
-		return null;
+		GroupHolder groupHolder ;
+		if(convertView==null){
+			convertView=mInflater.inflate(R.layout.contact_headlist, null);
+			groupHolder=new GroupHolder();
+			groupHolder.headTxt=(TextView)convertView.findViewById(R.id.contact_head_txt);
+			convertView.setTag(groupHolder);
+		}else{
+			groupHolder=(GroupHolder)convertView.getTag();
+		}
+		
+		groupHolder.headTxt.setText(head_list.get(groupPosition));
+		return convertView;
 	}
 
 	@Override
 	public boolean hasStableIds() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isChildSelectable(int arg0, int arg1) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	public void setDatas(List<String> head_list,
@@ -90,5 +122,14 @@ public class ContactListAdapter extends BaseExpandableListAdapter {
 		this.item_list_txt=item_list_txt;
 		
 	}
+	class GroupHolder {
+		  public TextView headTxt;
+	}
+		 
+	class ItemHolder {
+		  public ImageView itemImg;
+		  public TextView itemTxt;
+	}
+
 
 }
