@@ -1,4 +1,4 @@
-package com.lala.weixin;
+package com.lala.weixin.model;
 
 
 

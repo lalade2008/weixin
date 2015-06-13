@@ -1,10 +1,11 @@
-package com.lala.weixin;
+package com.lala.weixin.model;
 
 public class HomeModel {
 	private int picId;
 	private String name;
 	private String time;
 	private String msg;
+	
 	public int getPicId() {
 		return picId;
 	}

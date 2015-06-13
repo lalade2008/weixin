@@ -1,9 +1,9 @@
-package com.lala.weixin;
+package com.lala.weixin.model;
 
 public class NearbyModel {
 	private int picId;
 	private String name;
-	private int sexId;//0:Å®£»1:ÄÐ
+	private int sexId;//0:å¥³ï¼›1:ç”·
 	private String distance;
 	private String description;
 	public int getPicId() {

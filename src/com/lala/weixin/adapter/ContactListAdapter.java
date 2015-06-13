@@ -1,8 +1,8 @@
 package com.lala.weixin.adapter;
 
 import java.util.List;
-
 import com.lala.weixin.R;
+import com.lala.weixin.model.ContactModel;
 
 import android.content.Context;
 import android.util.Log;
@@ -15,12 +15,7 @@ import android.widget.TextView;
 
 public class ContactListAdapter extends BaseExpandableListAdapter {
 	LayoutInflater mInflater;
-	private List<String> head_list;
-	private List<List<String>> item_list_txt;
-	private List<List<Integer>> item_list_pic;
-	private ImageView itemImg;
-	private TextView itemTxt;
-
+	List<ContactModel> datas;
 
 
 	public ContactListAdapter(Context context) {
@@ -31,12 +26,15 @@ public class ContactListAdapter extends BaseExpandableListAdapter {
 	@Override
 	public Object getChild(int groupPosition, int childPosition) {
 		// TODO Auto-generated method stub
-		return item_list_txt.get(groupPosition).get(childPosition);
+
+		Log.d("test", "getChild"+datas.get(groupPosition).getData().get(childPosition));
+		return datas.get(groupPosition).getData().get(childPosition);
 	}
 
 	@Override
 	public long getChildId(int groupPosition, int childPosition) {
 		// TODO Auto-generated method stub
+		Log.d("test", "childPosition="+childPosition);
 		return childPosition;
 	}
 
@@ -54,34 +52,44 @@ public class ContactListAdapter extends BaseExpandableListAdapter {
 		}else{
 			itemHolder=(ItemHolder) convertView.getTag();
 		}
-		itemHolder.itemImg.setBackgroundResource(item_list_pic.get(groupPosition).get(childPosition));
-		itemHolder.itemTxt.setText(item_list_txt.get(groupPosition).get(childPosition));
+
+		int picId =datas.get(groupPosition).getData().get(childPosition).getPicId();
+		String name =datas.get(groupPosition).getData().get(childPosition).getName();
+				
+				
+		itemHolder.itemImg.setBackgroundResource(picId);
+		itemHolder.itemTxt.setText(name);
+		
 
 		return convertView;
 	}
 
 	@Override
 	public int getChildrenCount(int groupPosition ) {
-		// TODO Auto-generated method stub
-		Log.d("test-----", "groupPosition="+groupPosition+"   size="+item_list_txt.get(groupPosition).size());
-		return item_list_txt.get(groupPosition).size();
+		// TODO Auto-generated method stub	
+
+		Log.d("test", "datas.get(groupPosition).getData().size()="+datas.get(groupPosition).getData().size());
+		return datas.get(groupPosition).getData()==null ? 0 : datas.get(groupPosition).getData().size();
 	}
 
 	@Override
 	public Object getGroup(int groupPosition) {
 		// TODO Auto-generated method stub
-		return head_list.get(groupPosition);
+		Log.d("test", "group.get(groupPosition)="+datas.get(groupPosition));
+		return datas.get(groupPosition);
 	}
 
 	@Override
 	public int getGroupCount() {
 		// TODO Auto-generated method stub
-		return head_list.size();
+		Log.d("test", "group.size()="+datas.size());
+		return datas==null ? 0 : datas.size();
 	}
 
 	@Override
 	public long getGroupId(int groupPosition) {
 		// TODO Auto-generated method stub
+		Log.d("test", "groupPosition="+groupPosition);
 		return groupPosition;
 	}
 
@@ -97,8 +105,16 @@ public class ContactListAdapter extends BaseExpandableListAdapter {
 		}else{
 			groupHolder=(GroupHolder)convertView.getTag();
 		}
+		String txt =datas.get(groupPosition).getTxt();
+//		if(txt==""){
+//			groupHolder.headTxt.setVisibility(View.GONE);
+//		}
+		groupHolder.headTxt.setText(txt);
 		
-		groupHolder.headTxt.setText(head_list.get(groupPosition));
+		
+		//设置Group不可点击
+		convertView.setClickable(true);
+		
 		return convertView;
 	}
 
@@ -114,14 +130,7 @@ public class ContactListAdapter extends BaseExpandableListAdapter {
 		return true;
 	}
 
-	public void setDatas(List<String> head_list,
-			List<List<String>> item_list_txt, List<List<Integer>> item_list_pic) {
-		// TODO Auto-generated method stub
-		this.head_list=head_list;
-		this.item_list_pic=item_list_pic;
-		this.item_list_txt=item_list_txt;
-		
-	}
+
 	class GroupHolder {
 		  public TextView headTxt;
 	}
@@ -129,6 +138,11 @@ public class ContactListAdapter extends BaseExpandableListAdapter {
 	class ItemHolder {
 		  public ImageView itemImg;
 		  public TextView itemTxt;
+	}
+
+	public void setDatas(List<ContactModel> datas) {
+		// TODO Auto-generated method stub
+		this.datas=datas;
 	}
 
 

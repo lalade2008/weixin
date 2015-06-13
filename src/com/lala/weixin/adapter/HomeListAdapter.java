@@ -2,8 +2,8 @@ package com.lala.weixin.adapter;
 
 import java.util.List;
 
-import com.lala.weixin.HomeModel;
 import com.lala.weixin.R;
+import com.lala.weixin.model.HomeModel;
 
 import android.content.Context;
 import android.util.Log;
@@ -66,6 +66,9 @@ public class HomeListAdapter extends BaseAdapter {
 		
 		
 		HomeModel model =getItem(position);
+		int id =model.getPicId();
+		Log.d("test","picid="+id );
+		
 		
 		holder.icon.setImageResource(model.getPicId());
 		holder.name.setText(model.getName());

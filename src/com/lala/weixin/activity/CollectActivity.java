@@ -3,18 +3,15 @@ package com.lala.weixin.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lala.weixin.CollectModel;
 import com.lala.weixin.R;
 import com.lala.weixin.TitleHelper;
 import com.lala.weixin.adapter.CollectAdapter;
+import com.lala.weixin.model.CollectModel;
 
-import android.R.integer;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Window;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class CollectActivity extends Activity {
 	private ListView mListView;
@@ -25,7 +22,7 @@ public class CollectActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.collet);
 		TitleHelper mTitleHelper =new TitleHelper();
-		mTitleHelper.init(CollectActivity.this,true,"ÎÒµÄÊÕ²Ø");
+		mTitleHelper.init(CollectActivity.this,true,"æˆ‘çš„æ”¶è—");
 		CollectAdapter adapter =new CollectAdapter(this);
 		mListView=(ListView)findViewById(R.id.collet_list);
 		List<CollectModel> datas =getData();
@@ -37,11 +34,11 @@ public class CollectActivity extends Activity {
 	
 	
 	Integer colletFromIcon[]={R.drawable.collet_from_icon1,R.drawable.collet_from_icon2,R.drawable.collet_from_icon3,R.drawable.collet_from_icon1};
-	String colletFromName[]={"Ğ¡ÄÈ","ÎŞÏß¼¼ÊõÈ¦","Ğ¡ÄÈ","ÎŞÏß¼¼ÊõÈ¦"};
+	String colletFromName[]={"å°å¨œ","æ— çº¿æŠ€æœ¯åœˆ","å°å¨œ","æ— çº¿æŠ€æœ¯åœˆ"};
 	String colletItemTime[]={"15/4/4","15/3/16","15/3/14","15/3/4"};
 	Integer colletItemIcon[]={R.drawable.collet_item_icon1,R.drawable.collet_item_icon2,R.drawable.collet_item_icon3,R.drawable.collet_item_icon4};
-	String colletItemDes[]={"omniCommonUI¿ò¼Ü","HTTPĞ­ÒéÏê½â","ÆØ¹âFacebookÄÚ²¿¸ßĞ§¹¤×÷PPTÖ¸ÄÏ","²âÊÔ¹¤³ÌÊ¦ÊÖ²á£ºÌôÕ½Óë»úÓö"};
-	String colletItemFrom[]={"QQ","cnblogs.com","Ö°Ëµ","³ÌĞòÔ³"};
+	String colletItemDes[]={"omniCommonUIæ¡†æ¶","HTTPåè®®è¯¦è§£","æ›å…‰Facebookå†…éƒ¨é«˜æ•ˆå·¥ä½œPPTæŒ‡å—","æµ‹è¯•å·¥ç¨‹å¸ˆæ‰‹å†Œï¼šæŒ‘æˆ˜ä¸æœºé‡"};
+	String colletItemFrom[]={"QQ","cnblogs.com","èŒè¯´","ç¨‹åºçŒ¿"};
 	private List<CollectModel> getData() {
 		// TODO Auto-generated method stub
 		

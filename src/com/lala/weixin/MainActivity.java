@@ -1,5 +1,10 @@
 package com.lala.weixin;
 
+import com.lala.weixin.fragment.ContactFragment;
+import com.lala.weixin.fragment.FindFragment;
+import com.lala.weixin.fragment.MainFragment;
+import com.lala.weixin.fragment.MeFragment;
+
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -35,7 +40,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		tab_find.setOnClickListener(this);
 		tab_me.setOnClickListener(this);
 		TitleHelper mTitleHelper =new TitleHelper();
-		mTitleHelper.init(MainActivity.this,false,"Î¢ÐÅ");
+		mTitleHelper.init(MainActivity.this,false,"å¾®ä¿¡");
 		mViewPager=(ViewPager)findViewById(R.id.ViewPager);
 		mViewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
 	}	

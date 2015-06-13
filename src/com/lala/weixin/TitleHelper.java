@@ -7,8 +7,6 @@ import java.util.Map;
 import android.app.Activity;
 import android.app.ActionBar.LayoutParams;
 import android.graphics.drawable.ColorDrawable;
-import android.util.DisplayMetrics;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -58,7 +56,7 @@ public class TitleHelper {
 				SimpleAdapter adapter = new SimpleAdapter(activity,getDatas(),R.layout.more_list_item,new String[]{"itempic","itemname"},new int[]{R.id.more_item_pic,R.id.more_item_name});
 				mListView.setAdapter(adapter);
 				PopupWindow pop =new PopupWindow(mView,LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-				pop.setFocusable(true);// ¼ÓÉÏÕâ¸öpopupwindowÖĞµÄListView²Å¿ÉÒÔ½ÓÊÕµã»÷ÊÂ¼ş
+				pop.setFocusable(true);// åŠ ä¸Šè¿™ä¸ªpopupwindowä¸­çš„ListViewæ‰å¯ä»¥æ¥æ”¶ç‚¹å‡»äº‹ä»¶
 				pop.setTouchable(true);
 				pop.setOutsideTouchable(true);
 				pop.setBackgroundDrawable(new ColorDrawable(0));
@@ -69,7 +67,7 @@ public class TitleHelper {
 		
 	}
 	Integer pic[]={R.drawable.groupchat,R.drawable.addfriend,R.drawable.scan,R.drawable.help} ;
-	String name[]={"·¢ÆğÈºÁÄ","Ìí¼ÓÅóÓÑ","É¨Ò»É¨","°ïÖúÓë·´À¡"};	
+	String name[]={"å‘èµ·ç¾¤èŠ","æ·»åŠ æœ‹å‹","æ‰«ä¸€æ‰«","å¸®åŠ©ä¸åé¦ˆ"};	
 	private List<Map<String, Object>> getDatas() {  
 		List< Map<String, Object>> mDatas =new ArrayList<Map<String,Object>>();		
 		for(int i=0;i<name.length;i++){			 

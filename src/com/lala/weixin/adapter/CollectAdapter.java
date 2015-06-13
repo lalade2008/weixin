@@ -2,8 +2,8 @@ package com.lala.weixin.adapter;
 
 import java.util.List;
 
-import com.lala.weixin.CollectModel;
 import com.lala.weixin.R;
+import com.lala.weixin.model.CollectModel;
 
 import android.content.Context;
 import android.view.LayoutInflater;
