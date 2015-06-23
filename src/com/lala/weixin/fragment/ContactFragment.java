@@ -35,7 +35,9 @@ public class ContactFragment extends Fragment{
 		//获取Map的json格式
 //		String json = JSON.toJSONString(datas,true); 
 //	    Log.d("test1", "json= "+json);
-	    
+		expandableListView = (ExpandableListView) rootView.findViewById(R.id.contact_list);
+		//设置默认箭头不展示
+		expandableListView.setGroupIndicator(null);		
 
 		loadDatas();		
 		return rootView;
@@ -58,20 +60,19 @@ public class ContactFragment extends Fragment{
 					e.printStackTrace();
 				}
 				List<ContactModel> datas=JSON.parseArray(json,ContactModel.class);
-				mAdapter.setDatas(datas);
-				expandableListView = (ExpandableListView) rootView.findViewById(R.id.contact_list);
-				//设置默认箭头不展示
-				expandableListView.setGroupIndicator(null);
-				expandableListView.setAdapter(mAdapter);
-				//设置expandableListView默认全部展开
-				for (int i = 0; i < datas.size(); i++) {
-					expandableListView.expandGroup(i);
-				}
+				mAdapter.setDatas(datas);	
+				
 				mHandler.post(new Runnable() {					
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
 						mAdapter.notifyDataSetChanged();
+						expandableListView.setAdapter(mAdapter);
+						//设置expandableListView默认全部展开		
+						int count=expandableListView.getCount();
+						for (int i = 0; i < count; i++) {
+							expandableListView.expandGroup(i);
+						}
 					}
 				});
 				super.run();

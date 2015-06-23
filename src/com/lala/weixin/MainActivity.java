@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -43,6 +44,26 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		mTitleHelper.init(MainActivity.this,false,"微信");
 		mViewPager=(ViewPager)findViewById(R.id.ViewPager);
 		mViewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
+		mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
+			
+			@Override
+			public void onPageSelected(int position) {
+				// TODO Auto-generated method stub
+				changeTabIcon(position);
+			}
+			
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}	
 	
 	private class ViewPagerAdapter extends FragmentPagerAdapter{
@@ -100,7 +121,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			mViewPager.setCurrentItem(3, false);
 			changeTabIcon(3);
 			break;	
-
 		default:
 			break;
 		}
