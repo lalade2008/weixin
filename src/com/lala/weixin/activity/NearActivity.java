@@ -12,6 +12,7 @@ import com.lala.weixin.model.NearbyModel;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,8 +32,8 @@ public class NearActivity extends Activity {
 		setContentView(R.layout.near);
 		mListView=(ListView)findViewById(R.id.near_list);
 		mAdapter= new NearListAdapter(this);
-		List<NearbyModel> datas =getDatas();
-		mAdapter.setAdapterDatas(datas);
+		//List<NearbyModel> datas =getDatas();
+		//mAdapter.setAdapterDatas(datas);
 		mListView.setAdapter(mAdapter);		
 		
 		mImageView=(ImageView)findViewById(R.id.back);		
@@ -43,7 +44,45 @@ public class NearActivity extends Activity {
 				finish();
 			}
 		});
+		
+		loadDatas();
 	}
+	Handler mHandler=new Handler();
+	private void loadDatas() {
+		Thread t =new Thread(){
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				String json = null;
+				List<NearbyModel> datas =new ArrayList<NearbyModel>();
+				try {
+					InputStream in =getResources().getAssets().open("nearby_datas");
+					byte[] buffer = new byte[in.available()];
+					in.read(buffer);
+					json=new String(buffer,"UTF-8");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				datas =JSON.parseArray(json, NearbyModel.class);
+				mAdapter.setAdapterDatas(datas);
+				mHandler.post(new Runnable() {					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						mAdapter.notifyDataSetChanged();
+					}
+				});
+				super.run();
+			}
+			
+		};
+		t.start();	
+	}
+	
+	
+	//json数据放在assets文件夹下，直接读取文件获得json数据
+	/*
 	private List<NearbyModel> getDatas() {
 		// TODO Auto-generated method stub
 		String json = null;
@@ -59,13 +98,9 @@ public class NearActivity extends Activity {
 		}
 		datas =JSON.parseArray(json, NearbyModel.class);
 		return datas;
-	}
+	}*/
 	
-	
-	
-	
-	
-	
+	//直接设置数据源
 	/*
 	Integer picId[]={R.drawable.near_item_icon1,R.drawable.near_item_icon2,R.drawable.near_item_icon3,R.drawable.near_item_icon4,R.drawable.near_item_icon5,R.drawable.near_item_icon6,R.drawable.near_item_icon7,R.drawable.near_item_icon8,R.drawable.near_item_icon9,R.drawable.near_item_icon10,R.drawable.near_item_icon11,R.drawable.near_item_icon12,R.drawable.near_item_icon12};
 	String name[] ={"无聊","小娜","Shut up","明天会更好","王涛","海洋","老实人","VS Wang","黑马","牛昆","紫涵","死神","阿莎受电弓黑手光环"};

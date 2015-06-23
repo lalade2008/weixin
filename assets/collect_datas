@@ -1,0 +1,34 @@
+[
+    {
+        "colletFromIcon": 2130837507,
+        "colletFromName": "无聊",
+        "colletItemIcon": 2130837511,
+        "colletItemTime": "15/4/4",
+        "colletItemFrom": "QQ",
+        "colletItemDes": "omniCommonUI框架"
+    },
+    {
+        "colletFromIcon": 2130837508,
+        "colletFromName": "无线技术圈",
+        "colletItemIcon": 2130837512,
+        "colletItemTime": "15/3/16",
+        "colletItemFrom": "cnblogs.com",
+        "colletItemDes": "HTTP协议详解"
+    },
+    {
+        "colletFromIcon": 2130837509,
+        "colletFromName": "小娜",
+        "colletItemIcon": 2130837513,
+        "colletItemTime": "15/3/14",
+        "colletItemFrom": "职说",
+        "colletItemDes": "曝光Facebook内部高效工作PPT指南"
+    },
+    {
+        "colletFromIcon": 2130837508,
+        "colletFromName": "绝色双娇",
+        "colletItemIcon": 2130837510,
+        "colletItemTime": "15/3/5",
+        "colletItemFrom": "程序猿",
+        "colletItemDes": "测试工程师手册：挑战与机遇"
+    }
+]

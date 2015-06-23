@@ -2,17 +2,13 @@ package com.lala.weixin.fragment;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
-
 import com.alibaba.fastjson.JSON;
 import com.lala.weixin.R;
-import com.lala.weixin.R.id;
-import com.lala.weixin.R.layout;
 import com.lala.weixin.adapter.HomeListAdapter;
 import com.lala.weixin.model.HomeModel;
-
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -32,10 +28,58 @@ public class MainFragment extends Fragment{
 		// TODO Auto-generated method stub
 		rootView=inflater.inflate(R.layout.mainfragment, null);	
 		mListView=(ListView)rootView.findViewById(R.id.myweixin_list);
-		//List<HomeModel> datas=getDatas();
-		
+		//List<HomeModel> datas=getDatas();		
+		mAdapter=new HomeListAdapter(this.getActivity());
+		//mAdapter.setAdapterDatas(datas);
+		mListView.setAdapter(mAdapter);
+		loadDatas();
+		return rootView;
+	}
+	private Handler mHandler =new Handler();
+	private void loadDatas() {
+		Thread t=new Thread(){
+			@Override
+			public void run() {
+				String json = null ;
+				try {
+					InputStream in = getResources().getAssets().open("home_datas");
+					byte[] buffer =new byte[in.available()]; 
+					in.read(buffer);
+					json = new String(buffer,"UTF-8");
+					Log.d("test-----", "json= "+json);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if (TextUtils.isEmpty(json)){
+					return ;
+				}
+				List<HomeModel> datas=JSON.parseArray(json,HomeModel.class);
+				mAdapter.setAdapterDatas(datas);
+				mHandler.post(new Runnable() {					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						mAdapter.notifyDataSetChanged();
+					}
+				});
+				
+				super.run();
+			}
+		};
+		t.start();
+	}
+	
+	
+	
+	
+	
+	
+	
+	//json数据放在assets文件夹下，直接读取文件获得json数据
+	/*
+	private List<HomeModel> getDatas() {
 		String json = null ;
-
 		try {
 			InputStream in = getResources().getAssets().open("home_datas");
 			byte[] buffer =new byte[in.available()]; 
@@ -47,17 +91,13 @@ public class MainFragment extends Fragment{
 			e.printStackTrace();
 		}
 		if (TextUtils.isEmpty(json)){
-			
+			//return ;
 		}
 		List<HomeModel> datas=JSON.parseArray(json,HomeModel.class);
-		Log.d("test-----", "datas= "+datas);
-		
-		mAdapter=new HomeListAdapter(this.getActivity());
-		mAdapter.setAdapterDatas(datas);
-		mListView.setAdapter(mAdapter);
-		return rootView;
-	}
-	
+		Log.d("test-----", "datas= "+datas);		
+		return datas;
+	}	
+	//直接设置数据源
 	/*
 	Integer PicId[]={R.drawable.itme_icon1,R.drawable.itme_icon2,R.drawable.itme_icon3,R.drawable.itme_icon4,R.drawable.itme_icon5,R.drawable.itme_icon6,R.drawable.itme_icon7,R.drawable.itme_icon8,R.drawable.itme_icon9};
 	String name[] ={"腾讯企业邮箱","微信团队","文件传输助手","订阅号","腾讯新闻","QAAQ","微信支付","e洗袋","凯撒旅游"};

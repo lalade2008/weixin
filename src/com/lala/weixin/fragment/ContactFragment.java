@@ -7,6 +7,7 @@ import com.lala.weixin.R;
 import com.lala.weixin.adapter.ContactListAdapter;
 import com.lala.weixin.model.ContactModel;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -27,30 +28,61 @@ public class ContactFragment extends Fragment{
 		rootView=inflater.inflate(R.layout.contactfragment, null);	
 		
 		mAdapter=new ContactListAdapter(this.getActivity());
-		List<ContactModel> datas =getDatas();
-		//List<String> headGroup=getHeadGroup();
-		
+		//List<ContactModel> datas =getDatas();
+		////List<String> headGroup=getHeadGroup();		
 	
-		mAdapter.setDatas(datas);
+		//mAdapter.setDatas(datas);
 		//获取Map的json格式
-		String json = JSON.toJSONString(datas,true); 
-	    Log.d("test1", "json= "+json);
+//		String json = JSON.toJSONString(datas,true); 
+//	    Log.d("test1", "json= "+json);
 	    
-		expandableListView = (ExpandableListView) rootView.findViewById(R.id.contact_list);
-		//设置默认箭头不展示
-		expandableListView.setGroupIndicator(null);
-		expandableListView.setAdapter(mAdapter);
-		//设置expandableListView默认全部展开
-		for (int i = 0; i < datas.size(); i++) {
-			expandableListView.expandGroup(i);
-		}
-				
+
+		loadDatas();		
 		return rootView;
+	}
+	Handler mHandler=new Handler();
+	private void loadDatas() {
+		// TODO Auto-generated method stub
+		Thread t =new Thread(){
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				String json = null ;
+				try {
+					InputStream in =getResources().getAssets().open("contact_datas");
+					byte[] buffer =new byte[in.available()];
+					in.read(buffer);
+					json = new String(buffer,"UTF-8");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				List<ContactModel> datas=JSON.parseArray(json,ContactModel.class);
+				mAdapter.setDatas(datas);
+				expandableListView = (ExpandableListView) rootView.findViewById(R.id.contact_list);
+				//设置默认箭头不展示
+				expandableListView.setGroupIndicator(null);
+				expandableListView.setAdapter(mAdapter);
+				//设置expandableListView默认全部展开
+				for (int i = 0; i < datas.size(); i++) {
+					expandableListView.expandGroup(i);
+				}
+				mHandler.post(new Runnable() {					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						mAdapter.notifyDataSetChanged();
+					}
+				});
+				super.run();
+			}
+		};
+		t.start();
 	}	
 	
-	
+	//json数据放在assets文件夹下，直接读取文件获得json数据
+	/*
 	private List<ContactModel> getDatas() {
-//		Map<String, List<ContactItemModel>> datas= new HashMap<String, List<ContactItemModel>>();
 		String json = null ;
 		try {
 			InputStream in =getResources().getAssets().open("contact_datas");
@@ -65,9 +97,8 @@ public class ContactFragment extends Fragment{
 
 		return datas;
 	}//fastjson转化文：//http://www.tuicool.com/articles/zUbQfa
-	
-	
-	
+	*/		
+	//直接设置数据源
 	/*
 	String headTxt[]={"","企业号","A","B","C"};
 	String name[]={"新的朋友","群聊","标签","公众号"};
